@@ -1,6 +1,6 @@
 {
-  "name": "ekim-23",
-  "version": "0.1.0",
+  "name": "nextgen-react",
+  "version": "8.4.0",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
