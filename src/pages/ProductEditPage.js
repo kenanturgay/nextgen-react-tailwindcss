@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
-import ProductYupForm from "../components/ProductYupForm";
+import ProductForm from "../components/ProductForm";
 
 const ProductEditPage = () => {
   // productId url den yakala
@@ -31,11 +31,14 @@ const ProductEditPage = () => {
         <Button className="me-2" onClick={goBack}>
           <i className="fa-solid fa-chevron-left"></i>
         </Button>
+        <i className="fa-solid fa-table-cells fa-xs me-2"></i>
+        Ürünler <span className="me-3"></span>\{" "}
+        <i className="fa-solid fa-pen fa-xs ms-3 me-2"></i>
         Ürün Düzenle: {product?.name}
       </h1>
       <div>
         {/* Ürün Formu Konulacak */}
-        <ProductYupForm productData={product} />
+        <ProductForm productData={product} />
       </div>
     </>
   );

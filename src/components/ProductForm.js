@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const ProductForm = () => {
+const ProductForm = ({ productData }) => {
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -37,101 +37,83 @@ const ProductForm = () => {
   };
 
   useEffect(() => {
-    console.log("Product: ", product);
+    console.log("Product data güncellendi: ", product);
   }, [product]);
 
+  useEffect(() => {
+    productData && setProduct(productData);
+  }, [productData]);
+
   return (
-    <form onSubmit={productSubmitHandler}>
-      <div>
-        <label>
-          Ürün adı:
+    <div className="card login-form">
+      <form onSubmit={productSubmitHandler} className="card-body">
+        <div className="mb-3">
+          <label className="form-label">Ürün adı</label>
           <input
+            className="form-control"
             type="text"
             value={product.name}
             name="name"
             onChange={inputChangeHandler}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Açıklama:
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Açıklama</label>
           <input
+            className="form-control"
             type="text"
             name="description"
             value={product.description}
             onChange={inputChangeHandler}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Fotoğraf:
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Fotoğraf</label>
           <input
+            className="form-control"
             type="url"
             name="img"
             value={product.img}
             onChange={inputChangeHandler}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Fiyat:
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Fiyat</label>
           <input
+            className="form-control"
             type="number"
             name="price"
             value={product.price}
             onChange={inputChangeHandler}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Stok Adet:
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Stok Adet</label>
           <input
+            className="form-control"
             type="number"
             name="stock"
             value={product.stock}
             onChange={inputChangeHandler}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Aktif:
+        </div>
+        <div className="mb-3 form-check">
           <input
+            id="active"
+            className="form-check-input"
             type="checkbox"
             name="active"
             checked={product.active}
             onChange={inputChangeHandler}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Renk:
-          <select
-            name="color"
-            value={product.color}
-            onChange={inputChangeHandler}
-          >
-            <option value="" disabled>
-              Lütfen Renk seçiniz...
-            </option>
-            <option value="blue">Blue</option>
-            <option value="black">Black</option>
-            <option value="red">Red</option>
-            <option value="yellow">Yellow</option>
-            <option value="green">Green</option>
-            <option value="brown">Brown</option>
-            <option value="white">White</option>
-            <option value="orange">Orange</option>
-          </select>
-        </label>
-      </div>
-      <button type="submit">Kaydet</button>
-    </form>
+          <label className="form-check-label" htmlFor="active">
+            Aktif
+          </label>
+        </div>
+
+        <button type="submit">Kaydet</button>
+      </form>
+    </div>
   );
 };
 

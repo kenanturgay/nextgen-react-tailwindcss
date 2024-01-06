@@ -31,16 +31,32 @@ code {
   color: white;
 }
 
+.logo-icon {
+  height: 40px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
 .layout > footer {
   background-color: rgb(56, 56, 56);
   color: white;
 }
 
 .counter-card {
-  padding: 2rem;
+  padding: 0;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  max-width: 500px;
+  display: flex;
+  overflow: hidden;
+}
+.counter-card > .yumurta-sepeti {
+  min-width: 300px;
+  background-image: url("./assets/sepet-yumurta.png");
+  background-position: center;
+}
+.counter-card > .yumurta-form {
+  padding: 5rem;
+  flex-grow: 1;
 }
 
 .sticky {
@@ -141,4 +157,8 @@ h1.page-title {
 
 .login-form {
   max-width: 500px;
+}
+
+.color-orange {
+  color: #ec6300;
 }

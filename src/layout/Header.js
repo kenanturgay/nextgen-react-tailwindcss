@@ -1,10 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
+import mandarinIcon from "./../assets/mandarin.png";
 
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-sm py-3" data-bs-theme="dark">
       <div className="container">
-        <a className="navbar-brand pe-5" href="#">
+        <a className="navbar-brand pe-5 pt-3" href="#">
+          <img src={mandarinIcon} className="logo-icon" />
           MandaLina
         </a>
         <button

@@ -222,24 +222,7 @@ const ProductYupForm = ({ productData }) => {
         </Input>
         <FormFeedback>{formErrors.color}</FormFeedback>
       </FormGroup>
-      <FormGroup>
-        <Label>Araç Renk</Label>
 
-        {renkler.map((renk) => (
-          <div>
-            <label>
-              <input
-                type="radio"
-                value={renk}
-                checked={product.color == renk}
-                name="color"
-                onChange={inputChangeHandler}
-              />
-              {renk}
-            </label>
-          </div>
-        ))}
-      </FormGroup>
       <Button color="primary" type="submit" disabled={!formValid}>
         Kaydet
       </Button>

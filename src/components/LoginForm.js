@@ -66,7 +66,7 @@ const LoginForm = () => {
             value={formData.rememberMe}
             onChange={inputChangeHandler}
           />
-          <label className="form-check-label" for="rememberMe">
+          <label className="form-check-label" htmlFor="rememberMe">
             Beni hatırla
           </label>
         </div>

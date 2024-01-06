@@ -17,19 +17,19 @@ import { Link } from "react-router-dom";
 
 const generateImages = () => [
   {
-    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/300/400`,
+    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/500/400`,
     altText: "Image 1",
     caption: "Image 1",
     key: 1,
   },
   {
-    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/300/400`,
+    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/500/400`,
     altText: "Image 2",
     caption: "Image 2",
     key: 2,
   },
   {
-    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/300/400`,
+    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/500/400`,
     altText: "Image 3",
     caption: "Image 3",
     key: 3,
@@ -110,6 +110,8 @@ const ProductCard2 = ({ product, deleteProduct }) => {
       <CardBody>
         <CardTitle tag="h5">{product.name}</CardTitle>
         <CardText>{product.description}</CardText>
+        <CardText>Renk: {product.color}</CardText>
+        <CardText>Fiyat: {product.price} TL</CardText>
       </CardBody>
       <CardBody className="d-flex flex-column gap-1 flex-grow-0">
         <Button size="sm" color="primary" onClick={goProductDetail}>
