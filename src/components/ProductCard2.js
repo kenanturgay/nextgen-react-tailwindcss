@@ -112,17 +112,20 @@ const ProductCard2 = ({ product, deleteProduct }) => {
         <CardText>{product.description}</CardText>
       </CardBody>
       <CardBody className="d-flex flex-column gap-1 flex-grow-0">
-        <Button color="primary" onClick={goProductDetail}>
+        <Button size="sm" color="primary" onClick={goProductDetail}>
           <i className="fa-solid fa-magnifying-glass me-2"></i>
           İncele
         </Button>
-        <Link className="btn btn-primary" to={`/products/edit/${product.id}`}>
+        <Link
+          className="btn btn-primary btn-sm"
+          to={`/products/edit/${product.id}`}
+        >
           <i className="fa-solid fa-pen me-2"></i>
           Düzenle
         </Link>
         <button
           onClick={() => deleteProduct(product.id)}
-          className="btn btn-danger"
+          className="btn btn-danger  btn-sm"
         >
           <i className="fa-solid fa-trash me-2"></i>
           Sil
