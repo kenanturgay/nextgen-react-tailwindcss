@@ -22,11 +22,12 @@ const Header = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/" exact>
-                <i className="fa-solid fa-house"></i> Ana Sayfa
+                <i className="fa-solid fa-house fa-xs me-1"></i> Ana Sayfa
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/sayac">
+                <i className="fa-solid fa-egg fa-xs me-1"></i>
                 Yumurta Sepeti
               </NavLink>
             </li>
@@ -36,6 +37,7 @@ const Header = () => {
                 to="/products"
                 data-cy="link-products"
               >
+                <i className="fa-solid fa-table-cells fa-xs me-1"></i>
                 Ürünler
               </NavLink>
             </li>
@@ -45,7 +47,7 @@ const Header = () => {
                 to="/products/create"
                 data-cy="link-product-form"
               >
-                + Ürün Ekle
+                <i className="fa-solid fa-circle-plus fa-xs me-1"></i>Ürün Ekle
               </NavLink>
             </li>
             <li className="nav-item"></li>

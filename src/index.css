@@ -37,12 +37,10 @@ code {
 }
 
 .counter-card {
-  margin: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  width: 40%;
-  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
+  max-width: 500px;
 }
 
 .sticky {
@@ -99,6 +97,11 @@ footer ul {
 
 footer li {
   margin: 10px 0;
+  color: #bababa;
+  margin-bottom: 1rem;
+}
+footer li:hover {
+  color: #fff;
 }
 
 footer a {

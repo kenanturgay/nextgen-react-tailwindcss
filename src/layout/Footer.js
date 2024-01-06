@@ -2,9 +2,16 @@ const Footer = () => {
   return (
     <footer className="p-5">
       <div className="container">
-        <h2>Web Geliştirme Kaynakları</h2>
+        <h2 className="mb-4">Web Geliştirme Kaynakları</h2>
         <nav>
           <ul>
+            <li>
+              <a href="https://www.w3schools.com/" target="_blank">
+                Workintech
+              </a>
+              <br />
+              Web yazılım eğitimi almak için mükemmel bir yer.
+            </li>
             <li>
               <a href="https://www.w3schools.com/" target="_blank">
                 W3Schools
