@@ -4,8 +4,8 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
       <div className="container">
-        <a className="navbar-brand" href="#">
-          Ekim 1023
+        <a className="navbar-brand pe-5" href="#">
+          ReactJS
         </a>
         <button
           className="navbar-toggler"
@@ -31,11 +31,6 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-            </li>{" "}
-            <li className="nav-item">
               <NavLink
                 className="nav-link"
                 to="/products"
@@ -51,6 +46,16 @@ const Header = () => {
                 data-cy="link-product-form"
               >
                 + Ürün Ekle
+              </NavLink>
+            </li>
+            <li className="nav-item"></li>
+          </ul>
+        </div>
+        <div>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">
+                Giriş
               </NavLink>
             </li>
           </ul>
