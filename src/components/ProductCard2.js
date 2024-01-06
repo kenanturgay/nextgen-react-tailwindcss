@@ -81,7 +81,7 @@ const ProductCard2 = ({ product, deleteProduct }) => {
   }, []);
 
   return (
-    <Card>
+    <Card className="shadow-sm">
       <Carousel
         activeIndex={activeIndex}
         next={next}
@@ -111,8 +111,8 @@ const ProductCard2 = ({ product, deleteProduct }) => {
         <CardTitle tag="h5">{product.name}</CardTitle>
         <CardText>{product.description}</CardText>
       </CardBody>
-      <CardBody className="d-flex flex-column gap-1">
-        <Button onClick={goProductDetail}>
+      <CardBody className="d-flex flex-column gap-1 flex-grow-0">
+        <Button color="primary" onClick={goProductDetail}>
           <i className="fa-solid fa-magnifying-glass me-2"></i>
           İncele
         </Button>
