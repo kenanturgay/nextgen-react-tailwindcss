@@ -48,8 +48,7 @@ const ProductPage = () => {
 
   return (
     <div>
-      <h1>Ürünler Sayfası 123 </h1>
-      <hr />
+      <h1 className="page-title">Ürünler</h1>
       {/* ÜRÜNLER LİSTELENECEK */}
       <div>
         <input

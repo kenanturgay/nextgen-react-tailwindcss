@@ -15,7 +15,6 @@ const CounterCard = ({
   eksi1,
   artisMiktariArttir,
   artisMiktariAzalt,
-  PI,
   fiyat,
   taneFiyat,
   setTaneFiyat,
@@ -43,7 +42,6 @@ const CounterCard = ({
 
   return (
     <div className="counter-card">
-      <p>PI: {PI}</p>
       <h3>Sayaç</h3>
       <hr />
       <p>

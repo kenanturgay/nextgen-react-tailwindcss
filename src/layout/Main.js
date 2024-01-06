@@ -2,11 +2,11 @@ import Footer from "./Footer";
 import Header from "./Header";
 import PageBody from "./PageBody";
 
-const Main = ({ PI }) => {
+const Main = () => {
   return (
     <div className="layout">
       <Header />
-      <PageBody PI={PI}/>
+      <PageBody />
       <Footer />
     </div>
   );

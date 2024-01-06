@@ -2,10 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-sm py-3" data-bs-theme="dark">
       <div className="container">
         <a className="navbar-brand pe-5" href="#">
-          ReactJS
+          MandaLina
         </a>
         <button
           className="navbar-toggler"
@@ -22,7 +22,7 @@ const Header = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/" exact>
-                Ana Sayfa
+                <i className="fa-solid fa-house"></i> Ana Sayfa
               </NavLink>
             </li>
             <li className="nav-item">

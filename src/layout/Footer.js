@@ -47,12 +47,11 @@ const Footer = () => {
               belgeleri.
             </li>
             <li>
-              <a href="https://www.udemy.com/" target="_blank">
-                Udemy
+              <a href="https://react-hook-form.com/" target="_blank">
+                React Hook Form
               </a>
               <br />
-              Çeşitli konularda geniş bir kurs yelpazesi sunan online eğitim
-              platformu.
+              React Platformunda kolayca form üretebilmemizi sağlar.
             </li>
           </ul>
         </nav>

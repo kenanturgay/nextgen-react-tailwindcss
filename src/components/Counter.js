@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Greeting from "./Greeting";
 import CounterCard from "./CounterCard";
 
 const Counter = (props) => {
@@ -62,7 +61,6 @@ const Counter = (props) => {
       yuz={yuz}
       artisMiktariArttir={artisMiktariArttir}
       artisMiktariAzalt={artisMiktariAzalt}
-      PI={props.PI}
       fiyat={fiyat}
       taneFiyat={taneFiyat}
       setTaneFiyat={setTaneFiyat}

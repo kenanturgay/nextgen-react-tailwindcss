@@ -28,13 +28,12 @@ const ProductDetailPage = () => {
 
   return (
     <>
-      <h1>
+      <h1 className="page-title">
         <Button className="me-2" onClick={goBack}>
           <i className="fa-solid fa-chevron-left"></i>
         </Button>
         Ürün Detay
       </h1>
-      <hr />
       <div>
         <img src={product.img} />
         <h4>{product.name}</h4>

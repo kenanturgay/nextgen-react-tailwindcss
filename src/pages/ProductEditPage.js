@@ -27,13 +27,12 @@ const ProductEditPage = () => {
 
   return (
     <>
-      <h1>
+      <h1 className="page-title">
         <Button className="me-2" onClick={goBack}>
           <i className="fa-solid fa-chevron-left"></i>
         </Button>
-        Ürün Düzenleme Sayfası | {product?.name}
+        Ürün Düzenle: {product?.name}
       </h1>
-      <hr />
       <div>
         {/* Ürün Formu Konulacak */}
         <ProductYupForm productData={product} />

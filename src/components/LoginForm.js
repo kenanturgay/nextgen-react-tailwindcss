@@ -2,16 +2,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 
+const formDataInitial = {
+  email: "",
+  password: "",
+  rememberMe: false,
+};
+
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState(formDataInitial);
+
+  const inputChangeHandler = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("Form submit edildi! ", { email, password });
+    console.log("Form submit edildi! ", formData);
 
     axios
-      .post("https://reqres.in/api/user", { email, password })
+      .post("https://reqres.in/api/user", formData)
       .then((res) => {
         console.log("Login oldu: ", res.data);
       })
@@ -20,78 +31,58 @@ const LoginForm = () => {
       });
   };
 
-  const mailChangeHandler = (e) => {
-    // todo: inputtaki value yu email state ine yaz
-    console.log("input change event > ", e);
-    setEmail(e.target.value);
-    // ?
-  };
-
-  const passwordChangeHandler = (e) => {
-    // todo: inputtaki value yu email state ine yaz
-    console.log("input change event > ", e);
-    setPassword(e.target.value);
-  };
-
-  useEffect(() => {
-    // güncel email değeri
-    console.log("LoginForm > Email state i Güncellendi: ", email);
-  }, [email]);
-
-  useEffect(() => {
-    // component did mount
-    console.log("LoginForm Yüklendi | Component Did Mount!");
-
-    return () => {
-      // component will unmount
-      console.log("LoginForm kaldırıldı!");
-    };
-  }, []);
-
-  useEffect(() => {
-    // component did update
-    // email, password
-    console.log("LoginForm Güncellendi | Component Did Update!");
-  });
-
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <label className="form-label" htmlFor="user-mail">
-          Email
-        </label>
-        <input
-          id="user-mail"
-          className="form-control"
-          type="email"
-          value={email}
-          onChange={mailChangeHandler}
-        />
-      </div>
-      <div className="mb-3">
-        <label className="form-label">Password</label>
-        <input
-          type="password"
-          className="form-control"
-          value={password}
-          onChange={passwordChangeHandler}
-        />
-      </div>
+    <div className="card login-form">
+      <form onSubmit={submitHandler} className="card-body">
+        <div className="mb-3">
+          <label className="form-label" htmlFor="user-mail">
+            E-posta
+          </label>
+          <input
+            id="user-mail"
+            className="form-control"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={inputChangeHandler}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Şifre</label>
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            value={formData.password}
+            onChange={inputChangeHandler}
+          />
+        </div>
+        <div className="form-check mb-3">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            name="rememberMe"
+            id="rememberMe"
+            value={formData.rememberMe}
+            onChange={inputChangeHandler}
+          />
+          <label className="form-check-label" for="rememberMe">
+            Beni hatırla
+          </label>
+        </div>
 
-      <button
-        type="button"
-        className="btn btn-secondary me-2"
-        onClick={() => {
-          setEmail("");
-          setPassword("");
-        }}
-      >
-        Reset Form
-      </button>
-      <Button type="submit" color="primary">
-        Login
-      </Button>
-    </form>
+        <button
+          type="button"
+          className="btn btn-secondary me-2"
+          onClick={() => setFormData(formDataInitial)}
+        >
+          Sıfırla
+        </button>
+        <Button type="submit" color="primary">
+          Giriş
+        </Button>
+      </form>
+    </div>
   );
 };
 

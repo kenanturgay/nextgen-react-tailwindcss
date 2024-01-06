@@ -7,7 +7,7 @@ import LoginPage from "../pages/LoginPage";
 import ProductCreatePage from "../pages/ProductCreatePage";
 import ProductEditPage from "../pages/ProductEditPage";
 
-const PageBody = ({ PI }) => {
+const PageBody = () => {
   return (
     <div className="page-body container">
       <Switch>
@@ -15,7 +15,7 @@ const PageBody = ({ PI }) => {
           <AnaSayfa />
         </Route>
         <Route path="/sayac">
-          <SayacSayfa PI={PI} />
+          <SayacSayfa />
         </Route>
         <Route path="/login">
           <LoginPage />

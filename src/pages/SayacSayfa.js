@@ -1,17 +1,10 @@
-import { useState } from "react";
 import Counter from "../components/Counter";
 
-const SayacSayfa = ({ PI }) => {
-  const [show, setShow] = useState(true);
-
+const SayacSayfa = () => {
   return (
     <div className="page">
-      <h1>Yumurta Sepeti</h1>
-      <hr />
-      <button className="btn btn-primary" onClick={() => setShow(!show)}>
-        Toggle Counter
-      </button>
-      {show && <Counter PI={PI} sayacBaslangic={0} />}
+      <h1 className="page-title">Yumurta Sepeti</h1>
+      <Counter sayacBaslangic={0} />
     </div>
   );
 };
