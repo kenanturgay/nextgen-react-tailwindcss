@@ -32,56 +32,63 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="card login-form">
-      <form onSubmit={submitHandler} className="card-body">
-        <div className="mb-3">
-          <label className="form-label" htmlFor="user-mail">
-            E-posta
-          </label>
-          <input
-            id="user-mail"
-            className="form-control"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={inputChangeHandler}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Şifre</label>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            value={formData.password}
-            onChange={inputChangeHandler}
-          />
-        </div>
-        <div className="form-check mb-3">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="rememberMe"
-            id="rememberMe"
-            value={formData.rememberMe}
-            onChange={inputChangeHandler}
-          />
-          <label className="form-check-label" htmlFor="rememberMe">
-            Beni hatırla
-          </label>
-        </div>
+    <div className="counter-card">
+      <div className="yumurta-form">
+        <form onSubmit={submitHandler} className="card-body">
+          <div className="mb-3">
+            <label className="form-label" htmlFor="user-mail">
+              E-posta
+            </label>
+            <input
+              id="user-mail"
+              className="form-control"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={inputChangeHandler}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Şifre</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              value={formData.password}
+              onChange={inputChangeHandler}
+            />
+          </div>
+          <div className="form-check mb-3">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              name="rememberMe"
+              id="rememberMe"
+              value={formData.rememberMe}
+              onChange={inputChangeHandler}
+            />
+            <label className="form-check-label" htmlFor="rememberMe">
+              Beni hatırla
+            </label>
+          </div>
 
-        <button
-          type="button"
-          className="btn btn-secondary me-2"
-          onClick={() => setFormData(formDataInitial)}
-        >
-          Sıfırla
-        </button>
-        <Button type="submit" color="primary">
-          Giriş
-        </Button>
-      </form>
+          <button
+            type="button"
+            className="btn btn-secondary me-2"
+            onClick={() => setFormData(formDataInitial)}
+          >
+            Sıfırla
+          </button>
+          <Button type="submit" color="primary">
+            Giriş
+          </Button>
+        </form>
+      </div>
+      <div className="login-form-bg">
+        <p className="fs-6">
+          Üye değilseniz <a href="#">buradan</a> kayıt olabilirsiniz...
+        </p>
+      </div>
     </div>
   );
 };

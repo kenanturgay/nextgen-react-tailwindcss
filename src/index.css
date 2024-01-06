@@ -50,13 +50,30 @@ code {
   overflow: hidden;
 }
 .counter-card > .yumurta-sepeti {
-  min-width: 300px;
+  min-width: 40%;
   background-image: url("./assets/sepet-yumurta.png");
   background-position: center;
 }
 .counter-card > .yumurta-form {
   padding: 5rem;
   flex-grow: 1;
+}
+
+.login-form-bg {
+  min-width: 50%;
+  background-image: url("./assets/login-form-bg.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  color: #438bba;
+}
+.login-form-bg a {
+  text-decoration: none;
+  color: #0074c2;
+  font-weight: bold;
 }
 
 .sticky {
