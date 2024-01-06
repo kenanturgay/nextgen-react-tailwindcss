@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {
+  Button,
   Card,
   CardBody,
   CardLink,
@@ -11,27 +12,26 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselItem,
-  ListGroup,
-  ListGroupItem,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
-const items = [
+const generateImages = () => [
   {
-    src: "https://picsum.photos/id/123/1200/400",
-    altText: "Slide 1",
-    caption: "Slide 1",
+    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/300/400`,
+    altText: "Image 1",
+    caption: "Image 1",
     key: 1,
   },
   {
-    src: "https://picsum.photos/id/456/1200/400",
-    altText: "Slide 2",
-    caption: "Slide 2",
+    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/300/400`,
+    altText: "Image 2",
+    caption: "Image 2",
     key: 2,
   },
   {
-    src: "https://picsum.photos/id/678/1200/400",
-    altText: "Slide 3",
-    caption: "Slide 3",
+    src: `https://picsum.photos/id/${Math.round(Math.random() * 1000)}/300/400`,
+    altText: "Image 3",
+    caption: "Image 3",
     key: 3,
   },
 ];
@@ -40,16 +40,22 @@ const ProductCard2 = ({ product, deleteProduct }) => {
   const history = useHistory();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [images, setImages] = useState([]);
+
+  const goProductDetail = () => {
+    // todo: ürün detay sayfasına git
+    history.push(`/products/detail/${product.id}`);
+  };
 
   const next = () => {
     if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    const nextIndex = activeIndex === 0 ? images.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
 
@@ -58,36 +64,34 @@ const ProductCard2 = ({ product, deleteProduct }) => {
     setActiveIndex(newIndex);
   };
 
-  const goProductDetail = () => {
-    // todo: ürün detay sayfasına git
-    history.push(`/products/detail/${product.id}`);
-  };
-
-  const slides = items.map((item) => {
+  const slides = images.map((item) => {
     return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
-      >
+      <CarouselItem key={item.src} slide={false}>
         <img src={item.src} alt={item.altText} />
         <CarouselCaption
           captionText={item.caption}
-          captionHeader={item.caption}
+          captionHeader={product.name}
         />
       </CarouselItem>
     );
   });
 
+  useEffect(() => {
+    setImages(generateImages());
+  }, []);
+
   return (
-    <Card
-      style={{
-        width: "18rem",
-      }}
-    >
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+    <Card>
+      <Carousel
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+        pause={"hover"}
+        ride="false"
+        interval={false}
+      >
         <CarouselIndicators
-          items={items}
+          items={images}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
         />
@@ -107,9 +111,22 @@ const ProductCard2 = ({ product, deleteProduct }) => {
         <CardTitle tag="h5">{product.name}</CardTitle>
         <CardText>{product.description}</CardText>
       </CardBody>
-      <CardBody>
-        <CardLink href="#">Card Link</CardLink>
-        <CardLink href="#">Another Card Link</CardLink>
+      <CardBody className="d-flex flex-column gap-1">
+        <Button onClick={goProductDetail}>
+          <i className="fa-solid fa-magnifying-glass me-2"></i>
+          İncele
+        </Button>
+        <Link className="btn btn-primary" to={`/products/edit/${product.id}`}>
+          <i className="fa-solid fa-pen me-2"></i>
+          Düzenle
+        </Link>
+        <button
+          onClick={() => deleteProduct(product.id)}
+          className="btn btn-danger"
+        >
+          <i className="fa-solid fa-trash me-2"></i>
+          Sil
+        </button>
       </CardBody>
     </Card>
   );

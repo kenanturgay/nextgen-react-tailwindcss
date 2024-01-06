@@ -50,14 +50,16 @@ const ProductPage = () => {
     <div>
       <h1 className="page-title">Ürünler</h1>
       {/* ÜRÜNLER LİSTELENECEK */}
-      <div>
+      <div className="mb-3">
+        <label>Arama</label>
         <input
           id="products-filter"
           type="text"
+          className="form-control"
           onChange={(e) => setFilterText(e.target.value)}
         />
       </div>
-      <div className="products-container gap-2">
+      <div className="products-container gap-3">
         {list.map((product) => (
           <ProductCard2
             key={product.id}
