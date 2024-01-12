@@ -52,13 +52,23 @@ const Header = () => {
                 <i className="fa-solid fa-circle-plus fa-xs me-1"></i>Ürün Ekle
               </NavLink>
             </li>
-            <li className="nav-item"></li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/contact"
+                data-cy="link-product-form"
+              >
+                <i className="fa-solid fa-file-signature fa-xs me-1"></i>
+                İletişim
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">
+                <i className="fa-solid fa-user fa-xs me-1"></i>
                 Giriş
               </NavLink>
             </li>

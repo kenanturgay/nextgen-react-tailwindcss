@@ -17,9 +17,9 @@ const CounterCard = ({
   const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div className="counter-card">
+    <div className="form-card">
       <div className="yumurta-sepeti"></div>
-      <div className="yumurta-form">
+      <div className="form-container">
         <h3>Organik Yumurta Sepeti</h3>
         <hr />
         <div className="d-flex justify-content-between align-items-center py-3">

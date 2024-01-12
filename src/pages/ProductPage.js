@@ -48,7 +48,10 @@ const ProductPage = () => {
 
   return (
     <div>
-      <h1 className="page-title">Ürünler</h1>
+      <h1 className="page-title">
+        <i className="fa-solid fa-table-cells fa-xs me-2"></i>
+        Ürünler
+      </h1>
       {/* ÜRÜNLER LİSTELENECEK */}
       <div className="mb-3">
         <label>Arama</label>

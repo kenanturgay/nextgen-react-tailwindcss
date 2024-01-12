@@ -28,8 +28,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="counter-card">
-      <div className="yumurta-form">
+    <div className="form-card">
+      <div className="form-container">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="mb-3">
             <label className="form-label">E-posta</label>

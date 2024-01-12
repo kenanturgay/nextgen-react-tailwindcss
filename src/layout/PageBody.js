@@ -6,10 +6,11 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import LoginPage from "../pages/LoginPage";
 import ProductCreatePage from "../pages/ProductCreatePage";
 import ProductEditPage from "../pages/ProductEditPage";
+import ContactPage from "../pages/ContactPage";
 
 const PageBody = () => {
   return (
-    <div className="page-body container">
+    <div className="page-body container pb-5">
       <Switch>
         <Route path="/" exact>
           <AnaSayfa />
@@ -31,6 +32,9 @@ const PageBody = () => {
         </Route>
         <Route path="/products/edit/:productId" exact>
           <ProductEditPage />
+        </Route>
+        <Route path="/contact" exact>
+          <ContactPage />
         </Route>
         <Route path="*">
           <h2 className="error-box">404 - Sayfa Bulunamadı</h2>

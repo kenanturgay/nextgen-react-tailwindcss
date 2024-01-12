@@ -42,21 +42,30 @@ code {
   color: white;
 }
 
-.counter-card {
+.form-card {
   padding: 0;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   display: flex;
   overflow: hidden;
 }
-.counter-card > .yumurta-sepeti {
+.form-card > .yumurta-sepeti {
   min-width: 40%;
   background-image: url("./assets/sepet-yumurta.png");
   background-position: center;
 }
-.counter-card > .yumurta-form {
+.form-card > .form-container {
   padding: 5rem;
   flex-grow: 1;
+}
+
+.contact-form-bg {
+  min-width: 50%;
+  background-color: #90cdf1;
+  background-image: url("./assets/contact.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .login-form-bg {
@@ -124,7 +133,7 @@ footer {
 
 footer nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 1rem;
 }
 

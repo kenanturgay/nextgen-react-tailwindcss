@@ -3,7 +3,10 @@ import reactJSPng from "./../assets/react-js.png";
 const AnaSayfa = () => {
   return (
     <div className="page">
-      <h1 className="page-title">Ana Sayfa</h1>
+      <h1 className="page-title">
+        <i className="fa-solid fa-house fa-xs me-2"></i>
+        Ana Sayfa
+      </h1>
       <h2>ReactJS Kütüphanesi</h2>
       <p>
         React.js, Facebook tarafından geliştirilen ve kullanıcı arayüzleri
