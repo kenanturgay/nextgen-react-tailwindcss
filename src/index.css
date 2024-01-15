@@ -188,3 +188,7 @@ h1.page-title {
 .color-orange {
   color: #ec6300;
 }
+
+.form-hata-mesaji {
+  color: red;
+}
