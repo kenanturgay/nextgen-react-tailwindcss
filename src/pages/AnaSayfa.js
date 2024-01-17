@@ -1,13 +1,19 @@
+import { useInput } from "../hooks/useInput";
 import reactJSPng from "./../assets/react-js.png";
 
 const AnaSayfa = () => {
+  const [title, titleChange] = useInput("ReactJS Kütüphanesi", "title");
+
   return (
     <div className="page">
       <h1 className="page-title">
         <i className="fa-solid fa-house fa-xs me-2"></i>
         Ana Sayfa
       </h1>
-      <h2>ReactJS Kütüphanesi</h2>
+      <h2>{title}</h2>
+      <div>
+        <input value={title} onChange={titleChange} />
+      </div>
       <p>
         React.js, Facebook tarafından geliştirilen ve kullanıcı arayüzleri
         oluşturmak için kullanılan bir JavaScript kütüphanesidir. Web

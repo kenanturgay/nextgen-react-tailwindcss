@@ -1,7 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import mandarinIcon from "./../assets/mandarin.png";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Header = ({ userName }) => {
+  const [theme, setTheme] = useLocalStorage("theme", "light");
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm py-3" data-bs-theme="dark">
       <div className="container">
@@ -78,6 +85,11 @@ const Header = ({ userName }) => {
                   Giriş
                 </NavLink>
               )}
+            </li>
+            <li className="nav-item">
+              <button className="btn" onClick={toggleTheme}>
+                {theme === "light" ? "dark" : "light"}
+              </button>
             </li>
           </ul>
         </div>

@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <div className="layout">
       <Header userName={userName} />
-      <PageBody userName={userName} setUserName={setUserName} />
+      <PageBody setUserName={setUserName} />
       <Footer />
     </div>
   );

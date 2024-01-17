@@ -3,19 +3,20 @@ import { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { useForm } from "react-hook-form";
 
-const formDataInitial = {
-  userName: "",
-  password: "",
-  rememberMe: false,
-};
-
 const LoginForm = ({ setUserName }) => {
   const { register, handleSubmit } = useForm({
-    defaultValues: formDataInitial,
+    defaultValues: {
+      userName: localStorage.getItem("userName") || "",
+      password: "",
+      rememberMe: false,
+    },
   });
 
   const onSubmit = (formData) => {
     console.log("Form submit edildi! ", formData);
+
+    localStorage.setItem("userName", formData.userName);
+    setUserName(formData.userName);
 
     // axios
     //   .post("https://reqres.in/api/user", formData)
@@ -33,7 +34,11 @@ const LoginForm = ({ setUserName }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="mb-3">
             <label className="form-label">Kullanıcı Adı</label>
-            <input className="form-control" type="text" {...register("name")} />
+            <input
+              className="form-control"
+              type="text"
+              {...register("userName")}
+            />
           </div>
           <div className="mb-3">
             <label className="form-label">Şifre</label>
