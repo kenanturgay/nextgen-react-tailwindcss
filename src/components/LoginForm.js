@@ -4,12 +4,12 @@ import { Button } from "reactstrap";
 import { useForm } from "react-hook-form";
 
 const formDataInitial = {
-  email: "",
+  userName: "",
   password: "",
   rememberMe: false,
 };
 
-const LoginForm = () => {
+const LoginForm = ({ setUserName }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: formDataInitial,
   });
@@ -17,14 +17,14 @@ const LoginForm = () => {
   const onSubmit = (formData) => {
     console.log("Form submit edildi! ", formData);
 
-    axios
-      .post("https://reqres.in/api/user", formData)
-      .then((res) => {
-        console.log("Login oldu: ", res.data);
-      })
-      .catch((err) => {
-        console.error("Login Hata: ", err);
-      });
+    // axios
+    //   .post("https://reqres.in/api/user", formData)
+    //   .then((res) => {
+    //     console.log("Login oldu: ", res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error("Login Hata: ", err);
+    //   });
   };
 
   return (
@@ -32,12 +32,8 @@ const LoginForm = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="mb-3">
-            <label className="form-label">E-posta</label>
-            <input
-              className="form-control"
-              type="email"
-              {...register("email")}
-            />
+            <label className="form-label">Kullanıcı Adı</label>
+            <input className="form-control" type="text" {...register("name")} />
           </div>
           <div className="mb-3">
             <label className="form-label">Şifre</label>

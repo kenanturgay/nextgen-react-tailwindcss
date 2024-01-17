@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import mandarinIcon from "./../assets/mandarin.png";
 
-const Header = () => {
+const Header = ({ userName }) => {
   return (
     <nav className="navbar navbar-expand-sm py-3" data-bs-theme="dark">
       <div className="container">
@@ -67,10 +67,17 @@ const Header = () => {
         <div>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                <i className="fa-solid fa-user fa-xs me-1"></i>
-                Giriş
-              </NavLink>
+              {userName ? (
+                <span className="nav-link">
+                  <i className="fa-solid fa-user fa-xs me-1"></i>
+                  {userName}
+                </span>
+              ) : (
+                <NavLink className="nav-link" to="/login">
+                  <i className="fa-solid fa-user fa-xs me-1"></i>
+                  Giriş
+                </NavLink>
+              )}
             </li>
           </ul>
         </div>

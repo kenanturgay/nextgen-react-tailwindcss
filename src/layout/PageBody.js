@@ -8,7 +8,7 @@ import ProductCreatePage from "../pages/ProductCreatePage";
 import ProductEditPage from "../pages/ProductEditPage";
 import ContactPage from "../pages/ContactPage";
 
-const PageBody = () => {
+const PageBody = ({ setUserName }) => {
   return (
     <div className="page-body container pb-5">
       <Switch>
@@ -19,7 +19,7 @@ const PageBody = () => {
           <SayacSayfa />
         </Route>
         <Route path="/login">
-          <LoginPage />
+          <LoginPage setUserName={setUserName} />
         </Route>
         <Route path="/products" exact>
           <ProductPage />
