@@ -13,10 +13,11 @@ const LoginForm = ({ setUserName }) => {
   });
 
   const onSubmit = (formData) => {
-    console.log("Form submit edildi! ", formData);
+    console.log("Form submit edildi! SON ", formData);
 
-    localStorage.setItem("userName", formData.userName);
     setUserName(formData.userName);
+    console.log("setUserName on Submit >>> ", formData.userName);
+    localStorage.setItem("userName", formData.userName);
 
     // axios
     //   .post("https://reqres.in/api/user", formData)
@@ -37,6 +38,7 @@ const LoginForm = ({ setUserName }) => {
             <input
               className="form-control"
               type="text"
+              data-testid="username-input"
               {...register("userName")}
             />
           </div>
@@ -45,6 +47,7 @@ const LoginForm = ({ setUserName }) => {
             <input
               type="password"
               className="form-control"
+              data-testid="password-input"
               {...register("password")}
             />
           </div>
@@ -53,6 +56,7 @@ const LoginForm = ({ setUserName }) => {
               type="checkbox"
               className="form-check-input"
               id="rememberMe"
+              data-testid="remember-input"
               {...register("rememberMe")}
             />
             <label className="form-check-label" htmlFor="rememberMe">
@@ -67,7 +71,7 @@ const LoginForm = ({ setUserName }) => {
           >
             Sıfırla
           </button> */}
-          <Button type="submit" color="primary">
+          <Button type="submit" color="primary" data-testid="login-submit">
             Giriş
           </Button>
         </form>

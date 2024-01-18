@@ -1,7 +1,7 @@
 import { useInput } from "../hooks/useInput";
 import reactJSPng from "./../assets/react-js.png";
 
-const AnaSayfa = () => {
+const AnaSayfa = ({ color = "black" }) => {
   const [title, titleChange] = useInput("ReactJS Kütüphanesi", "title");
 
   return (
@@ -10,7 +10,7 @@ const AnaSayfa = () => {
         <i className="fa-solid fa-house fa-xs me-2"></i>
         Ana Sayfa
       </h1>
-      <h2>{title}</h2>
+      <h2 data-testid="anasayfa-title">{title}</h2>
       <div>
         <input value={title} onChange={titleChange} />
       </div>

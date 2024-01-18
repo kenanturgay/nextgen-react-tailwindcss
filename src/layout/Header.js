@@ -77,10 +77,14 @@ const Header = ({ userName }) => {
               {userName ? (
                 <span className="nav-link">
                   <i className="fa-solid fa-user fa-xs me-1"></i>
-                  {userName}
+                  <span data-testid="header-username">{userName}</span>
                 </span>
               ) : (
-                <NavLink className="nav-link" to="/login">
+                <NavLink
+                  className="nav-link"
+                  to="/login"
+                  data-testid="login-link"
+                >
                   <i className="fa-solid fa-user fa-xs me-1"></i>
                   Giriş
                 </NavLink>
