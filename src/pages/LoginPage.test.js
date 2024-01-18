@@ -1,9 +1,11 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
 import LoginPage from "./LoginPage";
 import App from "../App";
+
+afterEach(cleanup);
 
 test("Login Page başarılı bir şekilde yüklendi", () => {
   const setter = () => {};
@@ -33,6 +35,8 @@ test("Login Page fill form", () => {
 });
 
 test("Login Page header user name test", async () => {
+  const promise = Promise.resolve();
+
   render(
     <BrowserRouter>
       <App />
@@ -44,27 +48,19 @@ test("Login Page header user name test", async () => {
     userEvent.click(loginLink);
   });
 
-  act(() => {
-    const usernameInput = screen.getByTestId("username-input");
-    userEvent.type(usernameInput, "ahmet.telli");
-  });
+  const usernameInput = screen.getByTestId("username-input");
+  userEvent.type(usernameInput, "ahmet.telli");
 
-  act(() => {
-    const passwordInput = screen.getByTestId("password-input");
-    userEvent.type(passwordInput, "123");
-  });
+  const passwordInput = screen.getByTestId("password-input");
+  userEvent.type(passwordInput, "123");
+  const rememberInput = screen.getByTestId("remember-input");
+  userEvent.click(rememberInput);
 
-  act(() => {
-    const rememberInput = screen.getByTestId("remember-input");
-    userEvent.click(rememberInput);
-  });
+  const submitBtn = screen.getByTestId("login-submit");
+  act(() => userEvent.click(submitBtn));
 
-  act(() => {
-    const submitBtn = screen.getByTestId("login-submit");
-    userEvent.click(submitBtn);
-  });
-
-  expect(await screen.getByTestId("header-username")).toHaveTextContent(
+  expect(await screen.findByTestId("header-username")).toHaveTextContent(
     "ahmet.telli"
   );
+  await act(() => promise);
 });
