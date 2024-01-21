@@ -53,6 +53,7 @@ test("Login Page header user name test", async () => {
 
   const passwordInput = screen.getByTestId("password-input");
   userEvent.type(passwordInput, "123");
+
   const rememberInput = screen.getByTestId("remember-input");
   userEvent.click(rememberInput);
 
@@ -63,4 +64,33 @@ test("Login Page header user name test", async () => {
     "ahmet.telli"
   );
   await act(() => promise);
+});
+
+test("Login Page header user name test 2", async () => {
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+
+  act(() => {
+    const loginLink = screen.getByTestId("login-link");
+    userEvent.click(loginLink);
+  });
+
+  const usernameInput = screen.getByTestId("username-input");
+  userEvent.type(usernameInput, "ahmet.telli");
+
+  const passwordInput = screen.getByTestId("password-input");
+  userEvent.type(passwordInput, "123");
+
+  const rememberInput = screen.getByTestId("remember-input");
+  userEvent.click(rememberInput);
+
+  const submitBtn = screen.getByTestId("login-submit");
+  act(() => userEvent.click(submitBtn));
+
+  expect(await screen.findByTestId("header-username")).toHaveTextContent(
+    "ahmet.telli"
+  );
 });
