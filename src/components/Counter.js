@@ -1,68 +1,82 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import CounterCard from "./CounterCard";
 
+const yumurtaInitial = {
+  adet: 0,
+  artisMiktari: 1,
+  adetFiyat: 5,
+  fiyat: 0,
+};
+
+const yumurtaReducer = (state, action) => {
+  switch (action.type) {
+    case "arttır":
+      const yeniAdet = state.adet + state.artisMiktari;
+      return { ...state, adet: yeniAdet, fiyat: state.adetFiyat * yeniAdet };
+
+    case "azalt":
+      const yeniAdet2 = state.adet - state.artisMiktari;
+      return { ...state, adet: yeniAdet2, fiyat: state.adetFiyat * yeniAdet2 };
+
+    case "yuz":
+      return { ...state, adet: 100, fiyat: state.adetFiyat * 100 };
+
+    case "artışMiktarıArttır":
+      return { ...state, artisMiktari: state.artisMiktari + 1 };
+
+    case "artışMiktarıAzalt":
+      return { ...state, artisMiktari: state.artisMiktari - 1 };
+
+    case "taneFiyatAta":
+      return {
+        ...state,
+        adetFiyat: action.payload,
+        fiyat: state.adet * action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
 const Counter = (props) => {
-  const [counter, setCounter] = useState(props.sayacBaslangic);
-  const [artisMiktari, setArtisMiktari] = useState(1);
-  const [taneFiyat, setTaneFiyat] = useState(5);
-  const [fiyat, setFiyat] = useState(0);
+  const [yumurta, dispatchYumurta] = useReducer(yumurtaReducer, yumurtaInitial);
 
   const arti1 = () => {
-    setCounter(counter + artisMiktari);
+    dispatchYumurta({ type: "arttır" });
   };
 
   const eksi1 = () => {
-    setCounter(counter - artisMiktari);
+    dispatchYumurta({ type: "azalt" });
   };
 
   const yuz = () => {
-    // counter: 5
-    setCounter(100);
-    // counter ?
+    dispatchYumurta({ type: "yuz" });
   };
 
   const artisMiktariArttir = () => {
-    setArtisMiktari(artisMiktari + 1);
+    dispatchYumurta({ type: "artışMiktarıArttır" });
   };
 
   const artisMiktariAzalt = () => {
-    setArtisMiktari(artisMiktari - 1);
+    dispatchYumurta({ type: "artışMiktarıAzalt" });
   };
 
-  useEffect(() => {
-    // console.log("Counter: ", counter, " | taneFiyat: ", taneFiyat);
-    setFiyat(counter * taneFiyat);
-  }, [counter, taneFiyat]);
-
-  useEffect(() => {
-    // component did update
-    // state veya prop değişmiştir
-    // console.log("Counter componenti did update oldu | re-render");
-  });
-
-  useEffect(() => {
-    // did update
-    // console.log("[] Counter componenti did update oldu | re-render");
-  }, [
-    // tüm state ve propları
-    counter,
-    artisMiktari,
-    taneFiyat,
-    fiyat,
-    props.sayacBaslangic,
-  ]);
+  const setTaneFiyat = (yeniTaneFiyat) => {
+    dispatchYumurta({ type: "taneFiyatAta", payload: yeniTaneFiyat });
+  };
 
   return (
     <CounterCard
-      counter={counter}
+      counter={yumurta.adet}
       arti1={arti1}
-      artisMiktari={artisMiktari}
+      artisMiktari={yumurta.artisMiktari}
       eksi1={eksi1}
       yuz={yuz}
       artisMiktariArttir={artisMiktariArttir}
       artisMiktariAzalt={artisMiktariAzalt}
-      fiyat={fiyat}
-      taneFiyat={taneFiyat}
+      fiyat={yumurta.fiyat}
+      taneFiyat={yumurta.adetFiyat}
       setTaneFiyat={setTaneFiyat}
     />
   );
