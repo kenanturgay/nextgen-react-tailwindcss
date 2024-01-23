@@ -1,8 +1,21 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useInput } from "../hooks/useInput";
 import reactJSPng from "./../assets/react-js.png";
+import { GlobalActions } from "../store/reducers/globalReducer";
+import { setTitleActionCreator } from "../store/actions/globalActions";
 
 const AnaSayfa = ({ color = "black" }) => {
-  const [title, titleChange] = useInput("ReactJS Kütüphanesi", "title");
+  const [titleInput, titleInputChange] = useInput(
+    "ReactJS Kütüphanesi",
+    "title"
+  );
+
+  const title = useSelector((store) => store.global.title);
+  const dispatch = useDispatch();
+
+  const setTitle = () => {
+    dispatch(setTitleActionCreator(titleInput));
+  };
 
   return (
     <div className="page">
@@ -12,7 +25,8 @@ const AnaSayfa = ({ color = "black" }) => {
       </h1>
       <h2 data-testid="anasayfa-title">{title}</h2>
       <div>
-        <input value={title} onChange={titleChange} />
+        <input value={titleInput} onChange={titleInputChange} />
+        <button onClick={setTitle}>Başlığı Değiştir</button>
       </div>
       <p>
         React.js, Facebook tarafından geliştirilen ve kullanıcı arayüzleri
