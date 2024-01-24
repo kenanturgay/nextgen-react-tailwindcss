@@ -1,38 +1,20 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
 import ProductCard2 from "../components/ProductCard2";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsAction } from "../store/actions/productActions";
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
+  const products = useSelector((store) => store.product.list);
+  const productsLoading = useSelector((store) => store.product.loading);
+  const dispatch = useDispatch();
   const [filterText, setFilterText] = useState("");
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
-  const deleteProduct = (productId) => {
-    axios
-      .delete(
-        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
-      )
-      .then((res) => {
-        console.log("ürün silindi: ", res.data);
-        fetchProducts();
-      })
-      .catch((err) => {
-        console.log("ürün silinirken bir hata ile karşılaşıldı: ", err);
-      });
-  };
-
-  const fetchProducts = () => {
-    axios
-      .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
-      .then((res) => {
-        setProducts(res.data);
-      });
-  };
-
   useEffect(() => {
-    fetchProducts();
+    dispatch(fetchProductsAction());
   }, []);
+
+  console.log("products > ", products);
 
   useEffect(() => {
     console.log("filterText: ", filterText);
@@ -40,7 +22,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     setList(
-      products.filter((p) =>
+      products?.filter((p) =>
         p.name.toLowerCase().includes(filterText.toLowerCase())
       )
     );
@@ -63,13 +45,11 @@ const ProductPage = () => {
         />
       </div>
       <div className="products-container gap-3">
-        {list.map((product) => (
-          <ProductCard2
-            key={product.id}
-            product={product}
-            deleteProduct={deleteProduct}
-          />
-        ))}
+        {productsLoading && <h1>LOADING..........</h1>}
+        {!productsLoading &&
+          list?.map((product) => (
+            <ProductCard2 key={product.id} product={product} />
+          ))}
       </div>
     </div>
   );

@@ -14,6 +14,8 @@ import {
   CarouselItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteProductAction } from "../store/actions/productActions";
 
 const generateImages = () => [
   {
@@ -36,11 +38,12 @@ const generateImages = () => [
   },
 ];
 
-const ProductCard2 = ({ product, deleteProduct }) => {
+const ProductCard2 = ({ product }) => {
   const history = useHistory();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [images, setImages] = useState([]);
+  const dispatch = useDispatch();
 
   const goProductDetail = () => {
     // todo: ürün detay sayfasına git
@@ -62,6 +65,10 @@ const ProductCard2 = ({ product, deleteProduct }) => {
   const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
+  };
+
+  const deleteProduct = (pId) => {
+    dispatch(deleteProductAction(pId));
   };
 
   const slides = images.map((item) => {
