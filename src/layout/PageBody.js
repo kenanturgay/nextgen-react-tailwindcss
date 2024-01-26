@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import AnaSayfa from "../pages/AnaSayfa";
-import ProductPage from "../pages/ProductPage";
+import ProductPage from "../pages/ProductPagePagination";
 import SayacSayfa from "../pages/SayacSayfa";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import LoginPage from "../pages/LoginPage";

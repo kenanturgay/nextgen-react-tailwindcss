@@ -1,6 +1,8 @@
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { queryClient } from "../App";
 
 const ProductForm = ({ productData }) => {
   const [product, setProduct] = useState({
@@ -15,18 +17,27 @@ const ProductForm = ({ productData }) => {
 
   const history = useHistory();
 
+  const mutation = useMutation({
+    mutationFn: (formData) =>
+      axios
+        .put(
+          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" +
+            formData.id,
+          formData
+        )
+        .then((res) => res.data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      history.push("/products");
+    },
+  });
+
   const productSubmitHandler = (e) => {
     e.preventDefault();
     // sayfa yenilenmesini engelle
     console.log("yeni product: ", product);
 
-    axios
-      .post("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products", product)
-      .then((res) => {
-        console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
-        // todo: kullanıcıyı ürünler sayfasına redirect
-        history.push("/products");
-      });
+    mutation.mutate(product);
   };
 
   const inputChangeHandler = (e) => {

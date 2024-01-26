@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import mandarinIcon from "./../assets/mandarin.png";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProducts } from "../fetch/product";
 
 const Header = ({ userName }) => {
   const [theme, setTheme] = useLocalStorage("theme", "light");
@@ -8,6 +10,15 @@ const Header = ({ userName }) => {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
+  const {
+    isPending: productsLoading,
+    error,
+    data: products = [],
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
 
   return (
     <nav className="navbar navbar-expand-sm py-3" data-bs-theme="dark">
@@ -47,7 +58,7 @@ const Header = ({ userName }) => {
                 data-cy="link-products"
               >
                 <i className="fa-solid fa-table-cells fa-xs me-1"></i>
-                Ürünler
+                Ürünler [{products.length}]
               </NavLink>
             </li>
             <li className="nav-item">

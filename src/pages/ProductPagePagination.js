@@ -1,37 +1,28 @@
 import { useEffect, useState } from "react";
-import ProductCard2 from "../components/ProductCard2";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsAction } from "../store/actions/productActions";
+import ProductCard from "../components/ProductCard";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { fetchProducts } from "../fetch/product";
+import { fetchProductsPagination } from "../fetch/product";
 
 const ProductPage = () => {
   const [filterText, setFilterText] = useState("");
-  const [list, setList] = useState([]); // ekranda listelenecek product arrayi
+  const [page, setPage] = useState(0);
+  const limit = 20;
 
   const {
     isPending: productsLoading,
     error,
-    data: products,
+    data: { products, total } = { products: [], total: 0 },
   } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
+    queryKey: ["products", page, limit],
+    queryFn: () => fetchProductsPagination(page, limit),
   });
 
-  console.log("products > ", products);
+  const [pages, setPages] = useState([0]);
 
   useEffect(() => {
-    console.log("filterText: ", filterText);
-  }, [filterText]);
-
-  useEffect(() => {
-    setList(
-      products?.filter((p) =>
-        p.name.toLowerCase().includes(filterText.toLowerCase())
-      )
-    );
-  }, [filterText, products]);
+    setPages(Array.from(Array(parseInt(total / limit)).keys()));
+    // [0, 1, 2, 3, 4]
+  }, [total]);
 
   return (
     <div>
@@ -49,11 +40,18 @@ const ProductPage = () => {
           onChange={(e) => setFilterText(e.target.value)}
         />
       </div>
+      <div>
+        <select value={page} onChange={(e) => setPage(e.target.value)}>
+          {pages.map((p) => (
+            <option value={p}>{p + 1}</option>
+          ))}
+        </select>
+      </div>
       <div className="products-container gap-3">
         {productsLoading && <h1>LOADING..........</h1>}
         {!productsLoading &&
-          list?.map((product) => (
-            <ProductCard2 key={product.id} product={product} />
+          products?.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
       </div>
     </div>
