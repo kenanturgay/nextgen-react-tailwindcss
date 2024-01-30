@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import AnaSayfa from "../pages/AnaSayfa";
 import ProductPage from "../pages/ProductPagePagination";
 import SayacSayfa from "../pages/SayacSayfa";
@@ -7,8 +7,11 @@ import LoginPage from "../pages/LoginPage";
 import ProductCreatePage from "../pages/ProductCreatePage";
 import ProductEditPage from "../pages/ProductEditPage";
 import ContactPage from "../pages/ContactPage";
+import { PrivatePage } from "./PrivatePage";
 
-const PageBody = ({ setUserName }) => {
+const PageBody = ({ userName, setUserName }) => {
+  const location = useLocation();
+
   return (
     <div className="page-body container pb-5">
       <Switch>
@@ -31,10 +34,10 @@ const PageBody = ({ setUserName }) => {
           <ProductDetailPage />
         </Route>
         <Route path="/products/edit/:productId" exact>
-          <ProductEditPage />
+          <PrivatePage userName={userName} PageComponent={ProductEditPage} />
         </Route>
         <Route path="/contact" exact>
-          <ContactPage />
+          <PrivatePage userName={userName} PageComponent={ContactPage} />
         </Route>
         <Route path="*">
           <h2 className="error-box">404 - Sayfa Bulunamadı</h2>

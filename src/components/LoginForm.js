@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { useForm } from "react-hook-form";
+import { useHistory, useLocation } from "react-router-dom";
 
 const LoginForm = ({ setUserName }) => {
   const { register, handleSubmit } = useForm({
@@ -11,22 +12,29 @@ const LoginForm = ({ setUserName }) => {
       rememberMe: false,
     },
   });
+  const history = useHistory();
+  const location = useLocation();
+
+  console.log("location **** ", location);
 
   const onSubmit = (formData) => {
-    console.log("Form submit edildi! SON ", formData);
-
-    setUserName(formData.userName);
-    console.log("setUserName on Submit >>> ", formData.userName);
-    localStorage.setItem("userName", formData.userName);
-
-    // axios
-    //   .post("https://reqres.in/api/user", formData)
-    //   .then((res) => {
-    //     console.log("Login oldu: ", res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.error("Login Hata: ", err);
-    //   });
+    axios
+      .post("https://workintech-fe-ecommerce.onrender.com/login", {
+        email: formData.userName,
+        password: formData.password,
+      })
+      .then((res) => {
+        console.log("Login oldu: ", res.data);
+        if (formData.rememberMe) {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userName", res.data.name);
+        }
+        setUserName(res.data.name);
+        history.push(location.state.referrer);
+      })
+      .catch((err) => {
+        console.error("Login Hata: ", err);
+      });
   };
 
   return (

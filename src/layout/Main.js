@@ -3,9 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import PageBody from "./PageBody";
 
-const Main = () => {
-  const [userName, setUserName] = useState("");
-
+const Main = ({ userName, setUserName }) => {
   const changeUserName = (newName) => {
     console.log("changeUserName >>> ", newName);
     setUserName(newName);
@@ -18,7 +16,7 @@ const Main = () => {
   return (
     <div className="layout">
       <Header userName={userName} />
-      <PageBody setUserName={changeUserName} />
+      <PageBody userName={userName} setUserName={changeUserName} />
       <Footer />
     </div>
   );
