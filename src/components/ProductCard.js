@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
+import { REQ_TYPES, useAxios } from "../hooks/useAxios";
+import { DeleteProductArguments } from "../api/api";
 
-const ProductCard = ({ product, deleteProduct }) => {
+const ProductCard = ({ product }) => {
   const history = useHistory();
+
+  const [deleteProduct] = useAxios();
 
   const goProductDetail = () => {
     // todo: ürün detay sayfasına git
@@ -12,7 +16,7 @@ const ProductCard = ({ product, deleteProduct }) => {
 
   return (
     <div className="product-card d-flex flex-column gap-2">
-      <img src={product.images[0].url} />
+      <img src={product.img} />
       <h4>{product.name}</h4>
       <p>{product.description}</p>
       <p>{product.price}</p>
@@ -25,7 +29,7 @@ const ProductCard = ({ product, deleteProduct }) => {
         Düzenle
       </Link>
       <button
-        onClick={() => deleteProduct(product.id)}
+        onClick={() => deleteProduct(DeleteProductArguments(product.id))}
         className="btn btn-danger"
       >
         <i className="fa-solid fa-magnifying-glass me-2"></i>

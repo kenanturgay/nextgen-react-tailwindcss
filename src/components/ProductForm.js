@@ -1,6 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import {
+  API,
+  CreateProductArguments,
+  PutProductArguments,
+  UpdateProductArguments,
+} from "../api/api";
+import { REQ_TYPES, useAxios } from "../hooks/useAxios";
 
 const ProductForm = ({ productData }) => {
   const [product, setProduct] = useState({
@@ -12,6 +19,7 @@ const ProductForm = ({ productData }) => {
     active: true,
     color: "",
   });
+  const [submitProduct, submitRes, submitLoading] = useAxios();
 
   const history = useHistory();
 
@@ -19,14 +27,17 @@ const ProductForm = ({ productData }) => {
     e.preventDefault();
     // sayfa yenilenmesini engelle
     console.log("yeni product: ", product);
-
-    axios
-      .post("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products", product)
-      .then((res) => {
-        console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
-        // todo: kullanıcıyı ürünler sayfasına redirect
+    if (product.id) {
+      // update
+      submitProduct(UpdateProductArguments(product)).then((resData) => {
         history.push("/products");
       });
+    } else {
+      // create
+      submitProduct(CreateProductArguments(product)).then((resData) => {
+        history.push("/products");
+      });
+    }
   };
 
   const inputChangeHandler = (e) => {

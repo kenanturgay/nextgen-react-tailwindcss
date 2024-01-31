@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import ProductCard2 from "../components/ProductCard2";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsAction } from "../store/actions/productActions";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { fetchProducts } from "../fetch/product";
+import { REQ_TYPES, useAxios } from "../hooks/useAxios";
+import { GetProductsArguments } from "../api/api";
+import ProductCard from "../components/ProductCard";
 
 const ProductPage = () => {
   const [filterText, setFilterText] = useState("");
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
-  const {
-    isPending: productsLoading,
-    error,
-    data: products,
-  } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
+  // const {
+  //   isPending: productsLoading,
+  //   error,
+  //   data: products,
+  // } = useQuery({
+  //   queryKey: ["products"],
+  //   queryFn: fetchProducts,
+  // });
+
+  const [getProducts, products, productsLoading, err] = useAxios([]);
 
   console.log("products > ", products);
 
@@ -32,6 +34,10 @@ const ProductPage = () => {
       )
     );
   }, [filterText, products]);
+
+  useEffect(() => {
+    getProducts(GetProductsArguments());
+  }, []);
 
   return (
     <div>
@@ -53,7 +59,7 @@ const ProductPage = () => {
         {productsLoading && <h1>LOADING..........</h1>}
         {!productsLoading &&
           list?.map((product) => (
-            <ProductCard2 key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} />
           ))}
       </div>
     </div>

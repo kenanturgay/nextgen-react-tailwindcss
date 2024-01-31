@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
+import { API } from "../api/api";
 
 const LoginForm = ({ setUserName }) => {
   const { register, handleSubmit } = useForm({
@@ -18,7 +19,7 @@ const LoginForm = ({ setUserName }) => {
   console.log("location **** ", location);
 
   const onSubmit = (formData) => {
-    axios
+    API
       .post("https://workintech-fe-ecommerce.onrender.com/login", {
         email: formData.userName,
         password: formData.password,

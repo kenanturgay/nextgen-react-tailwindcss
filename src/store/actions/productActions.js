@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ProductActions } from "../reducers/productReducer";
+import { API } from "../../api/api";
 
 export const setProductsActionCreator = (productList) => ({
   type: ProductActions.setProducts,
@@ -24,10 +25,7 @@ export const fetchProductsAction = () => (dispatch, getState) => {
 };
 
 export const deleteProductAction = (productId) => (dispatch, getState) => {
-  axios
-    .delete(
-      "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
-    )
+  API.delete("products/" + productId)
     .then((res) => {
       console.log("ürün silindi: ", res.data);
       dispatch(fetchProductsAction());
