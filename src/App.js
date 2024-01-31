@@ -12,12 +12,7 @@ function App() {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    // app componentinin did mount
-    // tüm uygulama çalıştırıldı ve yüklendi
-    // Sadece 1 kere çalışır
-    console.warn("APP DID MOUNT! UYGULAMA YÜKLENDİ!");
-
-    toast.error("Sayfama hoşgeldin!");
+    toast.success("Sayfama hoşgeldin!");
 
     const token = localStorage.getItem("token");
 
