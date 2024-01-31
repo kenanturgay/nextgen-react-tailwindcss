@@ -46,7 +46,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Main userName={userName} setUserName={setUserName} />
       <ToastContainer position="bottom-center" />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }
