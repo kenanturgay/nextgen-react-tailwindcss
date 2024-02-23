@@ -14,4 +14,8 @@ const reducers = combineReducers({
   product: productReducer,
 });
 
-export const store = createStore(reducers, applyMiddleware(thunk, myLogger, logger));
+export const store = createStore(
+  // reducers
+  reducers, 
+  // middleware
+  applyMiddleware(thunk, myLogger, logger));

@@ -2,13 +2,15 @@ import { useSelector } from "react-redux";
 
 const Footer = () => {
   const title = useSelector((store) => store.global.title);
-  const productLis = useSelector((store) => store.product.list);
+  const productsCount = useSelector((store) => store.product.list.length);
 
   return (
     <footer className="p-5">
       <div className="container">
         <h2 className="mb-4">Web Geliştirme Kaynakları</h2>
         <h3>{title}</h3>
+        <h2 className="mb-4">Ürün Sayısı</h2>
+        <h3>{productsCount}</h3>
         <nav>
           <ul>
             <li>
