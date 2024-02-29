@@ -18,4 +18,4 @@ root.render(
   </Provider>
 );
 
-console.log("Merhaba Dünya!");
+console.log("Merhaba Yazılım Dünyası!");
