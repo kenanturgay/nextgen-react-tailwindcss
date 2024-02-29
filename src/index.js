@@ -17,3 +17,5 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
+
+console.log("Merhaba Dünya!");
